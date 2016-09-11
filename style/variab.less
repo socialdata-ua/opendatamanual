@@ -1,0 +1,52 @@
+// DTA змінні
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,900&subset=cyrillic';
+// змінні з typography 
+@content_background:red; // УВАГА!! ЦЕЙ КОЛІР НЕ Є ЧАСТИНОЮ ДИЗАЙНУ
+                         // було там чомусь неозначені… перевірити після заміни typograpy
+// власне, нормальні змінні:
+// припускаємо, що оце baseline це те саме що мікромодуль
+@baseline:@mm; // was 20px;
+
+@body_font_size:@mm*.66; // was 14px;
+@body_color: #666;
+@body_font_family: helvetica,arial,sans-serif;
+
+@header_max_size: 30px;
+@header_color: #000;
+@header_font_weight: normal;
+@header_font_family: georgia,serif;
+
+@accent_color:#131339;// was orange;
+
+
+// основний блок змінних
+// МАКЕТ
+// виміри в макеті робимо довкола мікромодульної сітки:
+// крок рядків основного текста завжди задає ритм сторінки,
+// і все максимадьно пропорційне саме до нього
+@mm:36px; // замінити на відносне після заміни typography
+          // передається в @baseline
+// 
+// далі, наскільки це можливо, все формулюється або довкола шрифта,
+// або довкола самого мікромодульного макета
+@html_bloody_margin:@mm*.5 @mm*1.5;
+@figure_margin:@mm*.5 auto;
+@inner_margin:@mm*.33 @mm*.66 0;
+// 
+// ЕЗОТЕРИКА: припускаємо, що 
+// мінімально комфортна ширина рядка
+@min_column_width:@mm*13;
+// максимально комфортна ширина рядка
+@max_column_width:@mm*42;
+// тоді
+// момент, до якого все завжди врозріз — 
+// момент, коли можливі дві колонки з мінімальним міжколонником 
+// @min_2col_width:@min_column_width*2 + @mm*3
+// @min_3col_width:@min_column_width*2 + @max_column_width + @mm*4
+//
+// Без mediaqueries описано наймінімалістичніший варіант верстки —
+// **як для дрібного вікна**, 
+// перше розширення настає, коли ми можемо дозволити собі панель збоку,
+// чия ширина визначається тонкощами дизайну
+// @side_panel_width:@mm*3;
+// @min_side_panel:@min_column_width + @side_panel_width + @mm*3;

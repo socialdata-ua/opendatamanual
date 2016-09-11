@@ -1,0 +1,34 @@
+// DTA — прототип
+
+@import "variab.less";              // панель керування
+@import "normalize.less";           // замість ресета
+@import "typography.less";          // параметри набору
+
+// підзаголовки - курсивом
+.ws + p{font-style:italic;margin-top:-1em} // !!! НЕ ПРАЦЮЄ?
+
+html body{margin:@html_bloody_margin}
+
+// on tables
+table{
+  margin:@figure_margin;
+}
+th,td{
+  padding:@inner_margin
+  }
+th{
+  font-weight:bolder;font-size:.88em
+}
+
+// on images
+figure img,.figure img, figure, .figure {
+  max-width:100%
+}
+.figure, figure{
+  display:table;
+  margin:@figure_margin;
+}
+
+
+
+

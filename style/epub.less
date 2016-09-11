@@ -1,0 +1,42 @@
+// DTA прототип для EPUB
+
+@import "main.less";
+
+// titlepage
+#titlepage,#coverpage{
+    text-align:center;
+    h1.main {
+       text-transform: uppercase;
+       font-size: 2.6em;
+       line-height: 1em;
+   }
+   h1.subtitle {
+       line-height: .9;
+       font-style: italic;
+       font-size: 1.56em;
+       margin-top: -1em;
+   }
+   h2 {
+       font-size: 1em;
+       margin: 0;
+   }
+   p{
+       font-size:.8em
+   }
+}
+#coverpage{
+    background-color:black;
+    color:white;
+    h1,h2{
+      color:white;
+   }
+}
+
+p.publisher {
+    display: table;
+    margin: 2em auto;
+}
+.publisher span {
+    display: table-cell;
+    padding: 2em;
+}
