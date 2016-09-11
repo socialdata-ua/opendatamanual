@@ -1,0 +1,25 @@
+---
+title:
+- type: main
+  text: Відкритий посібник з відкритих даних
+- type: subtitle
+  text: для громадських організацій, журналістів і не тільки…
+creator:
+- role: author
+  text: Андрій Газін
+- role: author
+  text: Андрій Горбаль
+- role: author
+  text: Данило Кубай
+- role: compiler
+  text: Герман Шаповаленко
+- role: author
+  text: Євген Шульга
+#- role: editor
+#  text: Андрій Горбаль
+#- role: editor
+#  text: Данило Кубай
+publisher: Український центр суспільних даних
+date: 2016
+rights: Creative Commons CC BY
+...
