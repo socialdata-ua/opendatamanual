@@ -1,4 +1,3 @@
-# Відкритий посібник з відкритих даних
 
 Посібник поширюється за ліцензією Creative Commons (CC BY).
 Його  можна вільно поширювати (копіювати і розповсюджувати у будь-якому вигляді чи форматі)
@@ -20,12 +19,3 @@ Supported by the Public Affairs Section of the U.S. Embassy to Ukraine ---
 within the Civil Society Digital Capacity Building program. The views of
 the authors do not necessarily reflect the official position of the U.S.
 Government.
-
-
-
-
-
-
-
-
-
