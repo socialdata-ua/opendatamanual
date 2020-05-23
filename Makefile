@@ -1,25 +1,24 @@
 # Відкритий посібник з відкритих даних
 
-
 PANDOC= /usr/bin/pandoc
 LESSC= /usr/bin/lessc
 
-BASENAME= docs/відкритий-посібник-з-відкритих-даних
+BASENAME= docs/opendatamanual
 
 # source documents.md
-CHAPTERS= про.md\
-          вступ.md\
-          джерела.md\
-          формати.md\
-          отримання.md\
-          регулярні-вирази.md\
-          оптимізація-структури.md\
-          статистика.md\
-          візуалізація.md\
-          мапи.md\
-          індекси.md\
-          епілог.md\
-          додатки.md
+CHAPTERS= 000_about.md\
+					001_intro.md\
+					010_sources.md\
+					020_formats.md\
+					030_getting.md\
+					031_regex.md\
+					032_optimize.md\
+					040_statistics.md\
+					050_visulization.md\
+					060_maps.md\
+					070_examples.md\
+					080_distribute.md\
+					900_appendixes.md
 STYLESLESS= $(STYLEDIR)/main.less \
              $(STYLEDIR)/typography.less\
              $(STYLEDIR)/use.less\
@@ -33,19 +32,21 @@ TEMPMD= do-not-edit-me.markdown
 
 # output documents
 # $(BASENAME).fb2 $(BASENAME).pdf $(BASENAME).docx $(BASENAME).odt
-OUTDOCS= $(BASENAME).epub $(BASENAME).html  $(BASENAME).docx $(BASENAME).odt
+OUTDOCS= $(BASENAME).pdf $(BASENAME).epub $(BASENAME).html  $(BASENAME).docx $(BASENAME).odt
 
 STYLE-EPUB= $(STYLEDIR)/$(BASENAME-S-EPUB).css
 STYLE-HTML= $(STYLEDIR)/$(BASENAME-S-HTML).css
 
-COMMONFLAGS= --smart --standalone
+# COMMONFLAGS= --smart --standalone
+COMMONFLAGS= --standalone
+
 # спільні опції для HTML та електоркнижок
 #  --section-divs довелося вимкнути, бо в нас не зовсім регулярна структура
 MLFLAGS= --include-in-header=$(STYLEDIR)/comment.ht
 # спільні опції для електрокнижок
-EBOOKFLAGS= --highlight-style=monochrome
-EPUBFLAGS= $(MLFLAGS) $(EBOOKFLAGS)  --epub-stylesheet=$(STYLE-EPUB) --template=style/epub.html
-HTMLFLAGS= $(MLFLAGS)  -c $(STYLE-HTML) --highlight-style=zenburn --self-contained --toc
+EBOOKFLAGS= --highlight-style=monochrome --to epub3
+EPUBFLAGS= $(MLFLAGS) $(EBOOKFLAGS)  --css=$(STYLE-EPUB) --template=style/epub.html
+HTMLFLAGS= $(MLFLAGS)  -c $(STYLE-HTML) --to html5 --highlight-style=zenburn --self-contained --toc --metadata title="Посібник з відкритих даних"
 FBFLAGS= --write=fb2
 PDFLAGS=
 DOCXFLAGS=
@@ -56,7 +57,7 @@ ODTFLAGS=
 # збираємо тимчасовий файл, обробка m4 буде тут, а поки-що конкатенація
 $(TEMPMD): $(CHAPTERS)
 	cat $(CHAPTERS) > $@
-#$(TEMPMD): $(CHAPTERS)
+# $(TEMPMD): $(CHAPTERS)
 #	cat $(CHAPTERS) > deleteme
 #	m4 deleteme  > $@
 #	rm deleteme
@@ -75,8 +76,8 @@ $(BASENAME).html: $(TEMPMD) $(STYLE-HTML)
 #$(BASENAME).fb2: $(TEMPMD)
 #	$(PANDOC) $(COMMONFLAGS) $(FBFLAGS)  -o $@ $<
 
-#$(BASENAME).pdf: $(TEMPMD)
-#	$(PANDOC) $(COMMONFLAGS) $(PDFLAGS)  -o $@ $<
+$(BASENAME).pdf: $(TEMPMD)
+	$(PANDOC) $(COMMONFLAGS) $(PDFLAGS)  -o $@ $<
 
 $(BASENAME).docx: $(TEMPMD)
 	$(PANDOC) $(COMMONFLAGS) $(DOCXFLAGS)  -o $@ $<
@@ -91,8 +92,6 @@ docx: $(BASENAME).docx
 odt: $(BASENAME).odt
 
 clean:
-	rm -f  $(OUTDOCS) $() $(TEMPMD) $(STYLE-EPUB) $(STYLE-HTML)
-
-#$(BASENAME).fb2 # $(BASENAME).pdf $(BASENAME).docx $(BASENAME).odt
+	rm -f  $(OUTDOCS) $(TEMPMD) $(STYLE-EPUB) $(STYLE-HTML)
 
 .PHONY: all clean epub html docx odt
